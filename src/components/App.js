@@ -13,17 +13,17 @@ const Dishes = ({ category, setCategory }) => {
     <div className="dishes-container">
       {/* Category buttons */}
       <div className="categories">
-      <span id="filter-btn-all" onClick={() => setCategory('')}>All</span>
-        <span id="filter-btn-1" onClick={() => setCategory('breakfast')}>Breakfast</span>
-        <span id="filter-btn-2" onClick={() => setCategory('lunch')}>Lunch</span>
-        <span id="filter-btn-3" onClick={() => setCategory('shakes')}>Shakes</span>
+        <span data-test-id="filter-btn-all" onClick={() => setCategory('')}>All</span>
+        <span data-test-id="filter-btn-breakfast" onClick={() => setCategory('breakfast')}>Breakfast</span>
+        <span data-test-id="filter-btn-lunch" onClick={() => setCategory('lunch')}>Lunch</span>
+        <span data-test-id="filter-btn-shakes" onClick={() => setCategory('shakes')}>Shakes</span>
         {/* Add more category spans as needed */}
       </div>
 
       {/* Display filtered dishes */}
       <div className="dishes">
         {filteredDishes.map((dish) => (
-          <div key={dish.id} className="dish">
+          <div key={dish.id} className="dish" data-test-id={`menu-item-${dish.category}`}>
             {/* Render individual dish information */}
             <img src={dish.img} alt={dish.title} />
             <h3>{dish.title}</h3>
@@ -40,7 +40,7 @@ function App() {
   const [category, setCategory] = useState('');
 
   return (
-    <div className="App" id="main">
+    <div className="App" data-test-id="main">
       <header className="App-header">
         <h1>Our Menu</h1>
         <Dishes category={category} setCategory={setCategory} />
@@ -50,6 +50,7 @@ function App() {
 }
 
 export default App;
+
 
 
 
