@@ -1,34 +1,26 @@
 // src/App.js
 import React, { useState } from 'react';
 import './App.css';
-import dishesData from './Data.js'; // Import the dish data
+import dishesData from './Data.js';
 
 const Dishes = ({ category, setCategory }) => {
-  // Filter dishes based on the selected category or show all dishes by default
   const filteredDishes = category
     ? dishesData.filter((dish) => dish.category === category)
     : dishesData;
 
   return (
-    <div className="dishes-container">
-      {/* Category buttons */}
+    <div>
       <div className="categories">
-        <span data-test-id="filter-btn-all" onClick={() => setCategory('')}>All</span>
-        <span data-test-id="filter-btn-breakfast" onClick={() => setCategory('breakfast')}>Breakfast</span>
-        <span data-test-id="filter-btn-lunch" onClick={() => setCategory('lunch')}>Lunch</span>
-        <span data-test-id="filter-btn-shakes" onClick={() => setCategory('shakes')}>Shakes</span>
-        {/* Add more category spans as needed */}
+        <span onClick={() => setCategory('')} id="filter-btn-all">All</span>
+        <span onClick={() => setCategory('breakfast')} id="filter-btn-breakfast">Breakfast</span>
+        <span onClick={() => setCategory('lunch')} id="filter-btn-lunch">Lunch</span>
+        <span onClick={() => setCategory('shakes')} id="filter-btn-shakes">Shakes</span>
       </div>
 
-      {/* Display filtered dishes */}
-      <div className="dishes">
+      <div className="dishes" id="dishes-container">
         {filteredDishes.map((dish) => (
-          <div key={dish.id} className="dish" data-test-id={`menu-item-${dish.category}`}>
-            {/* Render individual dish information */}
-            <img src={dish.img} alt={dish.title} />
+          <div key={dish.id} className="dish" id={`menu-item-${dish.category}`}>
             <h3>{dish.title}</h3>
-            <p>{dish.desc}</p>
-            <p>${dish.price}</p>
           </div>
         ))}
       </div>
@@ -40,7 +32,7 @@ function App() {
   const [category, setCategory] = useState('');
 
   return (
-    <div className="App" data-test-id="main">
+    <div className="App" id="main">
       <header className="App-header">
         <h1>Our Menu</h1>
         <Dishes category={category} setCategory={setCategory} />
@@ -50,6 +42,7 @@ function App() {
 }
 
 export default App;
+
 
 
 
