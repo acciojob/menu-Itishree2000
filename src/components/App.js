@@ -10,7 +10,7 @@ const Dishes = ({ category, setCategory }) => {
     : dishesData;
 
   return (
-    <div>
+    <div className="dishes-container">
       {/* Category buttons */}
       <div className="categories">
         <span onClick={() => setCategory('')}>All</span>
@@ -40,7 +40,7 @@ function App() {
   const [category, setCategory] = useState('');
 
   return (
-    <div className="App">
+    <div className="App" id="main">
       <header className="App-header">
         <h1>Our Menu</h1>
         <Dishes category={category} setCategory={setCategory} />
@@ -50,5 +50,6 @@ function App() {
 }
 
 export default App;
+
 
 
