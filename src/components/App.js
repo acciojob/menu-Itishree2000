@@ -1,26 +1,41 @@
-// src/App.js
 import React, { useState } from 'react';
-import './App.css';
-import dishesData from './Data.js';
 
-const Dishes = ({ category, setCategory }) => {
-  const filteredDishes = category
-    ? dishesData.filter((dish) => dish.category === category)
-    : dishesData;
+const dishesData = [
+  // ... your dish data
+];
+
+const App = () => {
+  const [category, setCategory] = useState('All');
+  const [displayedDishes, setDisplayedDishes] = useState(dishesData);
+
+  const filterDishesByCategory = (selectedCategory) => {
+    if (selectedCategory === 'All') {
+      setDisplayedDishes(dishesData);
+    } else {
+      const filteredDishes = dishesData.filter((dish) => dish.category === selectedCategory);
+      setDisplayedDishes(filteredDishes);
+    }
+    setCategory(selectedCategory);
+  };
 
   return (
     <div>
+      {/* Category buttons */}
       <div className="categories">
-        <span onClick={() => setCategory('')} id="filter-btn-all">All</span>
-        <span onClick={() => setCategory('breakfast')} id="filter-btn-breakfast">Breakfast</span>
-        <span onClick={() => setCategory('lunch')} id="filter-btn-lunch">Lunch</span>
-        <span onClick={() => setCategory('shakes')} id="filter-btn-shakes">Shakes</span>
+        <button onClick={() => filterDishesByCategory('All')}>All</button>
+        <button onClick={() => filterDishesByCategory('Breakfast')}>Breakfast</button>
+        <button onClick={() => filterDishesByCategory('Lunch')}>Lunch</button>
+        <button onClick={() => filterDishesByCategory('Shakes')}>Shakes</button>
       </div>
 
-      <div className="dishes" id="dishes-container">
-        {filteredDishes.map((dish) => (
-          <div key={dish.id} className="dish" id={`menu-item-${dish.category}`}>
+      {/* Display dishes */}
+      <div className="dishes">
+        {displayedDishes.map((dish) => (
+          <div key={dish.id}>
+            <img src={dish.img} alt={dish.title} />
             <h3>{dish.title}</h3>
+            <p>{dish.desc}</p>
+            <p>${dish.price}</p>
           </div>
         ))}
       </div>
@@ -28,20 +43,8 @@ const Dishes = ({ category, setCategory }) => {
   );
 };
 
-function App() {
-  const [category, setCategory] = useState('');
-
-  return (
-    <div className="App" id="main">
-      <header className="App-header">
-        <h1>Our Menu</h1>
-        <Dishes category={category} setCategory={setCategory} />
-      </header>
-    </div>
-  );
-}
-
 export default App;
+
 
 
 
