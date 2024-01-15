@@ -13,10 +13,10 @@ const Dishes = ({ category, setCategory }) => {
     <div className="dishes-container">
       {/* Category buttons */}
       <div className="categories">
-        <span onClick={() => setCategory('')}>All</span>
-        <span onClick={() => setCategory('breakfast')}>Breakfast</span>
-        <span onClick={() => setCategory('lunch')}>Lunch</span>
-        <span onClick={() => setCategory('shakes')}>Shakes</span>
+      <span id="filter-btn-all" onClick={() => setCategory('')}>All</span>
+        <span id="filter-btn-1" onClick={() => setCategory('breakfast')}>Breakfast</span>
+        <span id="filter-btn-2" onClick={() => setCategory('lunch')}>Lunch</span>
+        <span id="filter-btn-3" onClick={() => setCategory('shakes')}>Shakes</span>
         {/* Add more category spans as needed */}
       </div>
 
